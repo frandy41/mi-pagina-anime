@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi mundo anime</title>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--bg2:#120406;--red:#e50914;--red2:#ff2d3d;--deep:#7a0008;--ink:#f4eeee;--mute:#b9a9aa;
+--display:'Dela Gothic One','Impact','Arial Black',sans-serif;--body:'Zen Kaku Gothic New','Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--red2);outline-offset:3px}
+
+/* barra */
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;position:relative;z-index:5}
+.logo{font-family:var(--display);font-size:1.3rem;letter-spacing:.02em}
+.logo b{color:var(--red)}
+nav ul{display:flex;gap:26px;list-style:none;font-weight:700}
+nav ul a{padding-bottom:4px;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+nav ul a:hover{color:var(--red2);border-color:var(--red)}
+
+/* hero */
+.hero{position:relative;min-height:88vh;display:grid;align-items:center;padding:4vh 5vw 8vh;isolation:isolate;
+background:radial-gradient(circle at 78% 45%,#2a0409 0,transparent 55%),var(--bg)}
+.dots{position:absolute;inset:0;z-index:-3;opacity:.5;
+background-image:radial-gradient(var(--deep) 1.6px,transparent 1.8px);background-size:16px 16px;
+-webkit-mask-image:linear-gradient(100deg,transparent 35%,#000 100%);mask-image:linear-gradient(100deg,transparent 35%,#000 100%)}
+.sun{position:absolute;right:6vw;top:50%;width:min(52vw,560px);aspect-ratio:1;transform:translateY(-50%);z-index:-2}
+.sun svg{width:100%;height:100%;display:block}
+.sun .slash{stroke-dasharray:700;stroke-dashoffset:700;animation:draw 1s .3s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.vert{position:absolute;right:2.2vw;top:14%;writing-mode:vertical-rl;font-family:var(--display);font-size:1.1rem;color:var(--red);letter-spacing:.4em}
+.hero h1{font-family:var(--display);font-size:clamp(3rem,10vw,8.2rem);line-height:.95;max-width:9ch;text-shadow:5px 5px 0 var(--deep)}
+.hero p{max-width:34ch;margin:26px 0 34px;color:var(--mute);font-size:1.15rem}
+.btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 30px;font-weight:900;background:var(--red);color:#fff;
+clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:background .2s,transform .2s}
+.btn:hover{background:var(--red2);transform:translateX(4px)}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 2px var(--red);color:var(--ink)}
+.btn.ghost{clip-path:none;border:2px solid var(--red)}
+.btn.ghost:hover{background:var(--red)}
+.cut{position:absolute;left:0;right:0;bottom:-1px;height:70px;background:var(--bg2);clip-path:polygon(0 100%,100% 0,100% 100%)}
+
+/* secciones */
+section{padding:84px 5vw}
+.alt{background:var(--bg2)}
+h2{font-family:var(--display);font-size:clamp(2rem,5vw,3.4rem);margin-bottom:12px;display:inline-block;
+border-left:10px solid var(--red);padding-left:18px}
+.lead{color:var(--mute);max-width:52ch;margin:0 0 42px 28px}
+
+/* series */
+.series{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px}
+.card{position:relative;padding:28px 26px 26px;min-height:340px;background:linear-gradient(0deg,rgba(5,5,5,.85) 0%,rgba(5,5,5,0) 55%),var(--img,linear-gradient(160deg,#1c0609,#0a0203)) center/cover #1c0609;
+clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);border-left:4px solid var(--red);
+display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transition:transform .25s}
+.card:hover{transform:translateY(-6px)}
+.card.big{grid-row:span 2;min-height:520px;background:linear-gradient(0deg,rgba(5,5,5,.85) 0%,rgba(5,5,5,0) 55%),var(--img,linear-gradient(160deg,var(--deep),#0a0203 70%)) center/cover #1c0609}
+.card .kanji{position:absolute;top:-10px;right:10px;font-family:var(--display);font-size:9rem;line-height:1;color:var(--red);opacity:.22}
+.card.big .kanji{font-size:15rem}
+.card h3{font-family:var(--display);font-size:1.5rem;position:relative}
+.card.big h3{font-size:2.2rem}
+.card p{color:var(--mute);font-size:.95rem;position:relative;margin-top:6px}
+.tag{display:inline-block;align-self:flex-start;background:var(--red);color:#fff;font-weight:900;font-size:.8rem;padding:3px 12px;margin-bottom:12px;transform:skewX(-12deg)}
+
+/* galería */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.shot{aspect-ratio:4/3;position:relative;display:grid;place-items:center;overflow:hidden;
+background:#0a0203;border:1px solid #3a0a10;transition:border-color .2s}
+.shot::after{content:"";position:absolute;left:-20%;top:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(229,9,20,.35),transparent);
+transform:translateX(-120%) skewX(-18deg);transition:transform .6s}
+.shot:hover{border-color:var(--red)}
+.shot:hover::after{transform:translateX(420%) skewX(-18deg)}
+.shot svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s}
+.shot:hover svg{transform:scale(1.06)}
+.shot em{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 9px;font-style:normal;font-weight:700;font-size:.9rem;color:#fff;z-index:2;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)}
+.shot::after{z-index:3}
+
+/* sobre mí */
+.about{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
+.avatar{aspect-ratio:1;max-width:360px;position:relative;background:var(--red);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:grid;place-items:center}
+.avatar::before{content:"";position:absolute;inset:8px;background:var(--bg);clip-path:inherit}
+.avatar span{position:relative;font-family:var(--display);font-size:5rem;color:var(--red)}
+.stats{display:flex;gap:30px;margin-top:26px;flex-wrap:wrap}
+.stats div{border-top:3px solid var(--red);padding-top:8px}
+.stats b{font-family:var(--display);font-size:2rem;display:block;color:var(--red2)}
+.stats small{color:var(--mute)}
+
+footer{text-align:center;padding:60px 5vw 40px;background:linear-gradient(180deg,var(--bg),#1a0206)}
+footer h2{border:none;padding:0}
+footer .btns{justify-content:center;margin:26px 0 40px}
+footer small{color:var(--mute)}
+
+@media(max-width:860px){
+nav ul{display:none}
+.series{grid-template-columns:1fr}
+.card.big{grid-row:auto;min-height:340px}
+.gal{grid-template-columns:1fr 1fr}
+.about{grid-template-columns:1fr}
+.avatar{margin:auto}
+.sun{opacity:.35;right:-10vw}
+.vert{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sun .slash{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#inicio">Mi<b>Anime</b></a>
+  <ul>
+    <li><a href="#series">Series</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#yo">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="dots"></div>
+  <img src="Fondo12.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(.45)">
+  <div class="vert" aria-hidden="true">アニメの世界</div>
+
+    <h1>Mi mundo anime</h1>
+    <p>Series, personajes y momentos que me hicieron quedarme despierto hasta las 3 a. m.</p>
+    <div class="btns">
+      <a class="btn" href="#series">Ver mis series</a>
+      <a class="btn ghost" href="#contacto">Hablemos</a>
+    </div>
+  </div>
+  <div class="cut"></div>
+</header>
+
+<section class="alt" id="series">
+  <h2>Series favoritas</h2>
+  <p class="lead">Las que volvería a ver desde el primer episodio. Cambia los títulos y las descripciones por los tuyos.</p>
+  <!-- PARA PONER TU IMAGEN: en cada tarjeta agrega style="--img:url('https://TU-IMAGEN.jpg')" -->
+  <div class="series">
+    <a class="card big" href="#" style="--img:url('serie1.jpg')"><span class="kanji"></span><span class="tag">Accion</span><h3>Black Clover</h3><p>Asta nació sin magia en un mundo donde todos la tienen, y no se rinde hasta cumplir su sueño de ser el Rey Mago.</p></a>
+    <a class="card" href="#" style="--img:url('jojos.jpg');background-position:center, center top"><span class="kanji"></span><span class="tag">Aventura</span><h3>JoJo's Bizarre Adventure</h3><p>Poderes únicos</p></a>
+    <a class="card" href="#" style="--img:url('JJK.webp');background-position:center, center top"><span class="kanji"></span><span class="tag">Misterio</span><h3>Jujutsu Kaisen</h3><p>Maldiciones, hechiceros </p></a>
+    <a class="card" href="#" style="--img:url('solo leveling.jpg');background-position:center, center top"><span class="kanji"></span><span class="tag">Fantasía</span><h3>Solo Leveling</h3><p>El cazador más débil del mundo despierta un poder único</p></a>
+    <a class="card" href="#" style="--img:url('Geass.jpg');background-position: center, center top;"><span class="kanji"></span><span class="tag">Aventura</span><h3>Code Geass</h3><p>Un príncipe exiliado con el poder de dar órdenes que nadie puede desobedecer</p></a>
+  </div>
+</section>
+
+<section id="galeria">
+  <h2>Personajes con Aura</h2>
+  <p class="lead">Los personajes que más me impactan por su presencia, su estilo y su poder.</p>
+  <div class="gal">
+    <div class="shot"><img src="ast.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>asta</em></div>
+    <div class="shot"><img src="shinra.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>Shinra</em></div>
+    <div class="shot"><img src="Gilga.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>Gilgamesh</em></div>
+    <div class="shot"><img src="rimuru.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>Rimuru</em></div>
+    <div class="shot"><img src="Gojo.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>Gojo</em></div>
+    <div class="shot"><img src="benimaru.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><em>Benimaru</em></div>
+  </div>
+</section>
+
+<style>
+  .marco{max-width:380px;margin:auto;background:#000;border:6px solid var(--red);
+  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);box-shadow:12px 12px 0 var(--deep)}
+  .marco img{display:block;width:100%;height:auto}
+  </style>
+
+<section class="alt" id="yo">
+  <div class="about">
+    <div class="avatar" role="img" aria-label="Tu foto"><img src="XD.jpg" alt="" style="position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);object-fit:cover;object-position:center top;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></div>
+    <div>
+      <h2>Sobre mí</h2>
+      <p class="lead" style="margin-bottom:0">Soy fan del anime desde que vi mi primer episodio. Aquí comparto lo que me gusta, mis recomendaciones y lo que estoy viendo ahora mismo.</p>
+      <div class="stats">
+        <div><b>50+</b><small>series vistas</small></div>
+        <div><b>12</b><small>favoritas</small></div>
+        <div><b>3</b><small>mangas en curso</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tr{padding:84px 5vw 40px;background:linear-gradient(180deg,#120406,#050505)}
+  .tr-wrap{display:grid;grid-template-columns:1.7fr 1fr;gap:34px;align-items:start}
+  .tr-player{position:relative;aspect-ratio:16/9;background:#000;border:3px solid var(--red);box-shadow:14px 14px 0 var(--deep)}
+  .tr-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .tr-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--mute);
+  background:repeating-linear-gradient(115deg,#140507 0 14px,#1d070a 14px 28px)}
+  .tr-empty b{display:block;font-family:var(--display);color:var(--red);font-size:3rem;margin-bottom:6px}
+  .tr-list{display:flex;flex-direction:column;gap:10px}
+  .tr-btn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 20px;background:#140507;color:var(--ink);
+  border:0;border-left:4px solid var(--red);font:700 1.05rem var(--body);cursor:pointer;
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);transition:background .2s,transform .2s}
+  .tr-btn i{font-style:normal;font-family:var(--display);color:var(--red2);font-size:1.3rem;min-width:34px}
+  .tr-btn span{flex:1}
+  .tr-btn::after{content:"▶";color:var(--red2);font-size:.9rem}
+  .tr-btn:hover{transform:translateX(6px);background:#1f070b}
+  .tr-btn.on{background:var(--red)}
+  .tr-btn.on i,.tr-btn.on::after{color:#fff}
+  .tr-foot{text-align:center;margin-top:70px;color:var(--mute);font-size:.9rem}
+  @media(max-width:860px){.tr-wrap{grid-template-columns:1fr}}
+  </style>
+  
+  <section class="tr" id="trailers">
+    <h2>Trailers</h2>
+    <p class="lead">Elige una serie y mira su trailer aquí mismo.</p>
+    <div class="tr-wrap">
+      <div>
+        <div class="tr-player" id="trPlayer">
+          <div class="tr-empty" id="trEmpty"><div><b>▶</b>Pega el enlace del trailer en el código</div></div>
+        </div>
+        <a class="btn ghost" id="trOpen" href="#" target="_blank" rel="noopener" style="margin-top:28px">Abrir en YouTube</a>
+      </div>
+      <div class="tr-list">
+        <button class="tr-btn" data-link="https://www.youtube.com/watch?v=ZRrFCX47cJc"><i>01</i><span>Black Clover</span></button>
+        <button class="tr-btn" data-link="https://www.youtube.com/watch?v=2X_wKgSshNQ"><i>02</i><span>JoJo's Bizarre Adventure</span></button>
+        <button class="tr-btn" data-link="https://www.youtube.com/watch?v=HGCsAcFzaFw"><i>03</i><span>Jujutsu Kaisen</span></button>
+        <button class="tr-btn" data-link="https://www.youtube.com/watch?v=J4XD23c8Of8"><i>04</i><span>Solo Leveling</span></button>
+        <button class="tr-btn" data-link="https://www.youtube.com/watch?v=v-AGjx0N24U"><i>05</i><span>Code Geass</span></button>
+      </div>
+    </div>
+    <p class="tr-foot">© 2026 Mi Anime. Hecho con pasión por el anime.</p>
+  </section>
+  
+  <script>
+  (function(){
+  var btns=document.querySelectorAll('.tr-btn'),box=document.getElementById('trPlayer'),
+  empty=document.getElementById('trEmpty'),open=document.getElementById('trOpen');
+  function vid(u){var m=u.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);return m?m[1]:null}
+  function show(b){
+    btns.forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    var link=b.getAttribute('data-link'),v=vid(link),old=box.querySelector('iframe');
+    if(old)old.remove();
+    if(v){
+      empty.style.display='none';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube.com/embed/'+v;
+      f.title='Trailer de '+b.querySelector('span').textContent;
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';box.appendChild(f);open.href=link;
+    }else{empty.style.display='grid';open.href='#'}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b)})});
+  show(btns[0]);
+  })();
+  </script>
+
+</body>
+</html>
